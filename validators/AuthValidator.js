@@ -4,7 +4,6 @@ const {
   Segments,
 } = require('celebrate');
 
-
 module.exports = {
   register: celebrate({
     [Segments.BODY]: Joi.object().keys({
