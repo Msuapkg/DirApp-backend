@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { UsersController } = require('../controllers');
 const { UserValidator } = require('../validators');
-const { verifyToken } = require('../middleware');
+const { verifyToken } = require('../middlewares');
 
 router.post('/users',
   UserValidator.create,

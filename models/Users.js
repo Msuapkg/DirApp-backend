@@ -2,6 +2,7 @@
 /* eslint-disable func-names */
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { PostsSchema } = require('./Posts');
 
 const SALT_WORK_FACTOR = 10;
 
@@ -22,15 +23,23 @@ const UsersSchema = mongoose.Schema({
     trin: true,
     unique: true,
   },
+  /*  profile_img {
+    type: String,
+  } */
   password: {
     type: String,
     require: true,
-    trin: true,
+    trim: true,
   },
   is_active: {
     type: Boolean,
     default: true,
   },
+  posts: [PostsSchema],
+  /* reactions: [{
+      user_name: String,
+      reaction_name: String,
+  }], */
   /* // Ejemplo de manejar referenciada la cardinalidad de 1-1
   // Reforzar un historial (Solo actualiza los cambios señalados, inserta el objeto)
   address: {
@@ -56,10 +65,11 @@ UsersSchema.pre('save', function (next) {
   if (!user.isModified('password')) return next();
   // generate a salt
   // eslint-disable-next-line consistent-return
-  bcrypt.genSalt(SALT_WORK_FACTOR, (errHash, salt) => {
-    if (errHash) return next(errHash);
+  bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    if (err) return next(err);
     // hash the password along with our new salt
     bcrypt.hash(user.password, salt, (errHash, hash) => {
+      if (errHash) return next(errHash);
       // override the cleartext password with the hashed one
       user.password = hash;
       return next();

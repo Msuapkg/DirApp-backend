@@ -1,11 +1,11 @@
-const { UserService } = require('../services');
-const { comparePasswords } = require('../utils');
-const { createToken } = require('../utils');
+const { UsersService } = require('../services');
+const { comparePasswords, createToken } = require('../utils');
 
 module.exports = {
   register: (req, res) => {
-    UserService.create(req.body)
+    UsersService.create(req.body)
       .then((user) => {
+        // eslint-disable-next-line no-param-reassign
         user.password = undefined;
         res.status(201).json(user);
       })
@@ -15,13 +15,13 @@ module.exports = {
     const { email, password } = req.body;
     let globalUser;
     // 1) Comprobar que el correo existe
-    UserService.findOneByEmail(email)
+    UsersService.findOneByEmail(email)
       .then((user) => {
         globalUser = user;
         if (!user) res.status(404).json({ message: 'Credentials Error' });
         return comparePasswords(password, user.password);
       })
-    // 2) Comparar la contraseña que llega con la contraseña que ya tenemos almacenada
+    // 2) Comparamos la contraseña que llega con la contraseña que ya tenemos almacenada
       .then((isValidPassword) => {
         if (!isValidPassword) res.status(404).json({ message: 'Credentials Error' });
         const token = createToken(globalUser);

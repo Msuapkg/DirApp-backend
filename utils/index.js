@@ -2,10 +2,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-  comparePasswords: (loggedPassword, registeredPassword) => bcrypt.compare(loggedPassword, registeredPassword),
+  comparePasswords:
+    (loggedPassword, registeredPassword) => bcrypt
+      .compare(loggedPassword, registeredPassword),
 
   createToken: (user) => {
     const payload = {
+      // eslint-disable-next-line no-underscore-dangle
       id: user._id,
       email: user.email,
       first_name: user.first_name,
