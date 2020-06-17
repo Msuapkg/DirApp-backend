@@ -4,7 +4,9 @@ const PostsSchema = mongoose.Schema[{
   images: [{
     type: String,
   }],
-  content: { type: String },
+  content: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now(),

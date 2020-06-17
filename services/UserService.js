@@ -13,15 +13,15 @@ module.exports = {
     user.posts.push(post);
     return user.save();
   },
-  /*  removePost: (user, idPost) => {
+  removePost: (user, idPost) => {
     // eslint-disable-next-line no-underscore-dangle
     const filteredPosts = user.posts.filter((post) => !post._id === idPost);
     // eslint-disable-next-line no-param-reassign
     user.posts = filteredPosts;
     return user.save();
-  }, */
+  },
   // eslint-disable-next-line consistent-return
-  /* updatePost: (user, updatedPost) => {
+  updatePost: (user, updatedPost) => {
     // user.foundPost.find((post) => post._id === updatedPost._id);
     // La forma de arriba y la de abajo devuelven lo mismo
     const foundPost = user.posts.id(updatedPost._id);
@@ -33,5 +33,5 @@ module.exports = {
     // eslint-disable-next-line no-param-reassign
     user.posts = updatedPosts;
     return user.save();
-  }, */
+  },
 };
