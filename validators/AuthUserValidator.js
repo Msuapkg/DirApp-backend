@@ -5,7 +5,7 @@ const {
 } = require('celebrate');
 
 module.exports = {
-  register: celebrate({
+  registerUser: celebrate({
     [Segments.BODY]: Joi.object().keys({
       first_name: Joi.string().required(),
       last_name: Joi.string().required(),
@@ -13,7 +13,7 @@ module.exports = {
       password: Joi.string().required(),
     }),
   }),
-  login: celebrate({
+  loginUser: celebrate({
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().email().required(),
       password: Joi.string().required(),

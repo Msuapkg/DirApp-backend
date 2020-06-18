@@ -7,11 +7,11 @@ const {
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      first_name: Joi.string().required(),
-      last_name: Joi.string().required(),
-      email: Joi.string().email().required(),
+      name: Joi.string().required(),
+      email: Joi.string().required(),
       password: Joi.string().required(),
-      work_space: Joi.string(),
+      phone_number: Joi.number().required(),
+      adress: Joi.string().required(),
     }),
   }),
 };
