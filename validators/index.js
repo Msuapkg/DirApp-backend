@@ -1,9 +1,11 @@
 const UserValidator = require('./UserValidator');
-const AuthValidator = require('./AuthValidator');
-const PostValidator = require('./PostValidator');
+const AuthUserValidator = require('./AuthUserValidator');
+const AuthCompanyValidator = require('./AuthCompanyValidator');
+const CompanyValidator = require('./CompanyValidator');
 
 module.exports = {
   UserValidator,
-  AuthValidator,
-  PostValidator,
+  AuthUserValidator,
+  AuthCompanyValidator,
+  CompanyValidator,
 };

@@ -6,12 +6,12 @@ const { UsersController } = require('../controllers');
 const { UserValidator } = require('../validators');
 const { verifyToken } = require('../middlewares');
 
-router.post('/users',
+router.post('/register/users',
   UserValidator.create,
   UsersController.create);
 
-router.get('/users',
+router.get('company/users',
   verifyToken,
-  UsersController.findAll);
+  UsersController.findOne);
 
 module.exports = router;

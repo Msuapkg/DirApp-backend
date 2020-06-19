@@ -2,7 +2,6 @@
 /* eslint-disable func-names */
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { PostsSchema } = require('./Posts');
 
 const SALT_WORK_FACTOR = 10;
 
@@ -17,7 +16,7 @@ const UsersSchema = mongoose.Schema({
     require: true,
     trin: true,
   },
-  email: {
+  mail: {
     type: String,
     require: true,
     trin: true,
@@ -31,11 +30,14 @@ const UsersSchema = mongoose.Schema({
     require: true,
     trim: true,
   },
+  work_space: {
+    type: String,
+    default: false,
+  },
   is_active: {
     type: Boolean,
     default: true,
   },
-  posts: [PostsSchema],
   /* reactions: [{
       user_name: String,
       reaction_name: String,
@@ -79,4 +81,4 @@ UsersSchema.pre('save', function (next) {
 
 const Users = mongoose.model('Users', UsersSchema);
 
-module.exports = Users;
+module.exports = { UsersSchema, Users };
